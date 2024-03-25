@@ -7,20 +7,27 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <style>
-    
-
+    .active {
+      color: red;
+    }
+    .theme-dark {
+      background-color: rgb(1, 9, 9);
+    }
+    .theme-light {
+      background-color: aqua;
+    }
   </style>
   <body>
     <div id="main">
-      <div id="nav">
+      <div id="nav" :class="[`theme-${theme}`]">
         <ul>
           <li v-for="(page , index) in pages">
             <a
+              :class="{active:activePage==index}"
               :href="page.links.url"
               :title="`this is a ${page.links.title}`"
               @click.prevent="activePage = index"
             >
-            <!-- here we can add click event using @click , also prevent is preventDefault  -->
               {{page.links.title}}
             </a>
           </li>
@@ -29,6 +36,8 @@
       <div id="content">
         <h1>{{pages[activePage].heading}}</h1>
       </div>
+      <button @click="changeTheme()">Toggle Color</button>
+      <!-- here we add the method to change the color , and in the class for nav we have added the array of classes so we can change it dinamically -->
     </div>
 
     <script>
@@ -36,6 +45,7 @@
         data() {
           return {
             activePage: 0,
+            theme: "dark",
             pages: [
               {
                 links: { title: "Home", url: "Home.html" },
@@ -51,6 +61,17 @@
               },
             ],
           };
+        },
+
+        methods: {
+          changeTheme() {
+            let theme = "light";
+            if (this.theme === "light") {
+              theme = "dark";
+            }
+
+            this.theme = theme;
+          },
         },
       }).mount("#main");
     </script>

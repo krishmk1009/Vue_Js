@@ -7,8 +7,10 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <style>
+    .active {
+      color: red;
+    }
     
-
   </style>
   <body>
     <div id="main">
@@ -16,11 +18,12 @@
         <ul>
           <li v-for="(page , index) in pages">
             <a
+              :class="{active:activePage==index}"
               :href="page.links.url"
               :title="`this is a ${page.links.title}`"
               @click.prevent="activePage = index"
             >
-            <!-- here we can add click event using @click , also prevent is preventDefault  -->
+              <!-- here we can add click event using @click , also prevent is preventDefault  -->
               {{page.links.title}}
             </a>
           </li>
