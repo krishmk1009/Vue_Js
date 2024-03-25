@@ -10,7 +10,9 @@
     <div id="nav">
       <ul>
         <li v-for="link in links" >
-            <a :href="`${link.link}`">     
+            <a :href="link.link"
+            :title="`this is a ${link.title}`"
+            >     
 <!-- Here we are using :href to bind the data to the href attribute ,similarly we can bind it to other attribute -->
                 {{link.title}}
             </a>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="nav">
+        <ul>
+          <li v-for="(page , index) in pages">
+            <a
+              :href="page.links.url"
+              :title="`this is a ${page.links.title}`"
+              @click.prevent="activePage = index"
+            >
+            <!-- here we can add click event using @click , also prevent is preventDefault  -->
+              {{page.links.title}}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="content">
+        <h1>{{pages[activePage].heading}}</h1>
+      </div>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            activePage: 0,
+            pages: [
+              {
+                links: { title: "Home", url: "Home.html" },
+                heading: "This is home",
+              },
+              {
+                links: { title: "About", url: "About.html" },
+                heading: "This is About",
+              },
+              {
+                links: { title: "Contact", url: "Contact.html" },
+                heading: "This is Contact",
+              },
+            ],
+          };
+        },
+      }).mount("#main");
+    </script>
+  </body>
+</html>
