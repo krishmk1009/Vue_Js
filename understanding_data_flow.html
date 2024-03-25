@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags and title -->
+  </head>
+  <style>
+    /* CSS styles */
+  </style>
+  <body>
+    <div id="main">
+      <!-- Parent component -->
+      <nav-bar :pages="pages" :active-page="activePage" :set-page="(index) => activePage = index"></nav-bar>
+      <page-body :page="pages[activePage]"></page-body>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            // Parent component's data
+            activePage: 0,
+            pages: [
+              { links: { title: "Home", url: "Home.html" }, heading: "This is home" },
+              { links: { title: "About", url: "About.html" }, heading: "This is About" },
+              { links: { title: "Contact", url: "Contact.html" }, heading: "This is Contact" },
+            ],
+          };
+        },
+      });
+
+      app.component("page-body", {
+        props: ["page"],
+        template: `
+          <!-- Child component displaying page content -->
+          <div id="content">
+            <h1>{{ page.heading }}</h1>
+          </div>
+        `,
+      });
+
+      app.component("nav-bar", {
+        props: ["pages", "activePage", "setPage"],
+        template: `
+          <!-- Child component handling navigation and theme -->
+          <div id="nav" :class="[ \`theme-\${theme}\` ]">
+            <ul>
+              <li v-for="(page, index) in pages" :key="index">
+                <a
+                  :class="{ active: activePage === index }"
+                  :href="page.links.url"
+                  :title="\`This is a \${page.links.title}\`"
+                  @click.prevent="setPage(index)"
+                >
+                  {{ page.links.title }}
+                </a>
+              </li>
+            </ul>
+            <!-- Toggle button to change theme -->
+            <button @click="changeTheme()">Toggle Color</button>
+          </div>
+        `,
+        data() {
+          return {
+            // Child component's data
+            theme: "dark",
+          };
+        },
+        methods: {
+          // Method to toggle theme
+          changeTheme() {
+            this.theme = this.theme === "light" ? "dark" : "light";
+          },
+        },
+      });
+
+      app.mount("#main");
+    </script>
+  </body>
+</html>
+
+
+<!-- 
+  Data Flow Explanation:
+
+Parent Component (app):
+
+Manages the activePage variable and pages array.
+Passes pages, activePage, and setPage (a callback function to update activePage) as props to the nav-bar child component.
+Renders the page-body child component to display content based on the selected activePage.
+page-body Child Component:
+
+Receives the page prop from the parent to display specific page content.
+nav-bar Child Component:
+
+Handles navigation and theme toggling.
+Uses props (pages, activePage, setPage) from the parent to manage active page selection and apply dynamic classes for styling.
+Contains a method (changeTheme) to toggle between dark and light themes.
+Overall, the data flow is from the parent (app) to child components (nav-bar and page-body), allowing for interactive navigation and theme changes within the Vue.js application.
+ -->
