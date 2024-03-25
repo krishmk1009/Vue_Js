@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <style>
+    .active {
+      color: red;
+    }
+    .theme-dark {
+      background-color: rgb(1, 9, 9);
+    }
+    .theme-light {
+      background-color: aqua;
+    }
+  </style>
+  <body>
+    <div id="main">
+      <div id="nav" :class="[`theme-${theme}`]">
+        <ul>
+          <li v-for="(page , index) in pages">
+            <a
+              :class="{active:activePage==index}"
+              :href="page.links.url"
+              :title="`this is a ${page.links.title}`"
+              @click.prevent="activePage = index"
+            >
+              {{page.links.title}}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- <page-body page="this is huhu"></page-body> -->
+      <!--  above  is for hardcoded props -->
+      <page-body :page="pages[activePage]"></page-body>
+      <!-- here we are passing props , if we want to pass the hardcoded string then we can simply pass page:"" -->
+      <button @click="changeTheme()">Toggle Color</button>
+      <!-- here we add the method to change the color , and in the class for nav we have added the array of classes so we can change it dinamically -->
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            activePage: 0,
+            theme: "dark",
+            pages: [
+              {
+                links: { title: "Home", url: "Home.html" },
+                heading: "This is home",
+              },
+              {
+                links: { title: "About", url: "About.html" },
+                heading: "This is About",
+              },
+              {
+                links: { title: "Contact", url: "Contact.html" },
+                heading: "This is Contact",
+              },
+            ],
+          };
+        },
+
+        methods: {
+          changeTheme() {
+            let theme = "light";
+            if (this.theme === "light") {
+              theme = "dark";
+            }
+
+            this.theme = theme;
+          },
+        },
+      });
+
+    //   app.component("page-body", {
+    //     props: ["page"],
+    //     // this is a props , we need to capture them in camleCase ,and while passing you can pass using dash as well
+    //     template: `
+    // <div id="content">
+    //   <h1>{{page}}</h1>
+    //   </div>
+    //   `,
+    //   });
+
+      // the below props are for dynamic
+      app.component("page-body", {
+        props: ["page"],
+        // this is a props , we need to capture them in camleCase ,and while passing you can pass using dash as well
+        template: `
+    <div id="content">
+      <h1>{{page.heading}}</h1>
+      </div>
+      `,
+      });
+      //  here we are using the props and we need to use it in {{}}
+
+      app.mount("#main");
+    </script>
+  </body>
+</html>
