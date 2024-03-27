@@ -1,83 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Meta tags and title -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <style>
-    /* CSS styles */
+    .active {
+      color: red;
+    }
+    .theme-dark {
+      background-color: rgb(1, 9, 9);
+    }
+    .theme-light {
+      background-color: aqua;
+    }
   </style>
   <body>
     <div id="main">
-      <!-- Parent component -->
-      <nav-bar :pages="pages" :active-page="activePage" :set-page="(index) => activePage = index"></nav-bar>
+        <nav-bar :pages="pages" :active-page="activePage" :set-page="(index)=>activePage = index"></nav-bar>
       <page-body :page="pages[activePage]"></page-body>
+    
     </div>
 
     <script>
-      const app = Vue.createApp({
-        data() {
-          return {
-            // Parent component's data
-            activePage: 0,
-            pages: [
-              { links: { title: "Home", url: "Home.html" }, heading: "This is home" },
-              { links: { title: "About", url: "About.html" }, heading: "This is About" },
-              { links: { title: "Contact", url: "Contact.html" }, heading: "This is Contact" },
-            ],
-          };
-        },
-      });
-
-      app.component("page-body", {
-        props: ["page"],
-        template: `
-          <!-- Child component displaying page content -->
-          <div id="content">
-            <h1>{{ page.heading }}</h1>
-          </div>
-        `,
-      });
-
-      app.component("nav-bar", {
-        props: ["pages", "activePage", "setPage"],
-        template: `
-          <!-- Child component handling navigation and theme -->
-          <div id="nav" :class="[ \`theme-\${theme}\` ]">
-            <ul>
-              <li v-for="(page, index) in pages" :key="index">
-                <a
-                  :class="{ active: activePage === index }"
-                  :href="page.links.url"
-                  :title="\`This is a \${page.links.title}\`"
-                  @click.prevent="setPage(index)"
-                >
-                  {{ page.links.title }}
-                </a>
-              </li>
-            </ul>
-            <!-- Toggle button to change theme -->
-            <button @click="changeTheme()">Toggle Color</button>
-          </div>
-        `,
-        data() {
-          return {
-            // Child component's data
-            theme: "dark",
-          };
-        },
-        methods: {
-          // Method to toggle theme
-          changeTheme() {
-            this.theme = this.theme === "light" ? "dark" : "light";
+        const app = Vue.createApp({
+          data() {
+            return {
+              activePage: 0,
+              pages: [
+                {
+                  links: { title: "Home", url: "Home.html" },
+                  heading: "This is home",
+                },
+                {
+                  links: { title: "About", url: "About.html" },
+                  heading: "This is About",
+                },
+                {
+                  links: { title: "Contact", url: "Contact.html" },
+                  heading: "This is Contact",
+                },
+              ],
+            };
           },
-        },
-      });
 
-      app.mount("#main");
+         
+        });
+
+        app.component("page-body", {
+          props: ["page"],
+          // this is a props , we need to capture them in camleCase ,and while passing you can pass using dash as well
+          template: `
+      <div id="content">
+        <h1>{{page.heading}}</h1>
+        </div>
+        `,
+        });
+
+        app.component("nav-bar",{
+
+          props:["pages" , "activePage" , "setPage"],
+          template :`
+
+          <div id="nav" :class="[ \`theme-\${theme}\` ]">
+      <ul>
+        <li v-for="(page, index) in pages" :key="index">
+          <a
+            :class="{ active: activePage === index }"
+            :href="page.links.url"
+            :title="\`This is a \${page.links.title}\`"
+            @click.prevent="setPage(index)"
+          >
+            {{ page.links.title }}
+          </a>
+        </li>
+      </ul>
+      <button @click="changeTheme()">Toggle Color</button>
+
+    </div>
+
+          `
+          ,
+          data(){
+            return {
+                theme: "dark",
+
+            }
+          }
+          ,
+          methods: {
+            changeTheme() {
+              let theme = "light";
+              if (this.theme === "light") {
+                theme = "dark";
+              }
+
+              this.theme = theme;
+            },
+          },
+
+        })
+
+        app.mount("#main");
     </script>
   </body>
 </html>
-
 
 <!-- 
   Data Flow Explanation:
