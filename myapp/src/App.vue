@@ -8,6 +8,7 @@
     <PageBody 
     v-if="pages.length >0 "
     :page="pages[activePage]"></PageBody>
+    <FormPage></FormPage>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import Navbar from "./components/Navbar.vue";
 import PageBody from "./components/PageBody.vue";
 import axios from "axios"; // Import Axios for HTTP requests
 // import "./assets/page.json"
+import FormPage from "./components/FormPage.vue"
 
 export default {
   data() {
@@ -27,6 +29,7 @@ export default {
   components: {
     Navbar,
     PageBody,
+    FormPage,
   },
   created() {
     this.fetchPageData(); // Call fetchPageData when the component is created

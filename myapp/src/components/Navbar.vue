@@ -25,6 +25,10 @@ export default {
       theme: "dark",
     };
   },
+
+  created() {
+    this.getThemeSetting();
+  },
   methods: {
     changeTheme() {
       let theme = "light";
@@ -33,6 +37,18 @@ export default {
       }
 
       this.theme = theme;
+      this.storeThemeSetting()
+    },
+
+    storeThemeSetting() {
+      localStorage.setItem("theme", this.theme);
+    },
+    getThemeSetting() {
+      let theme = localStorage.getItem("theme");
+
+      if (theme) {
+        this.theme = theme;
+      }
     },
   },
 };
