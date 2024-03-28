@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "name": "Krushna",
+      "email": "krushna@gmail.com",
+      "password": "krus",
+      "id": "76c2"
+    },
+    {
+      "id": "7a94",
+      "name": "mk",
+      "email": "mk@gmail.com",
+      "password": "mk"
+    },
+    {
+      "id": "9741",
+      "name": "hello",
+      "email": "how",
+      "password": "are"
+    },
+    {
+      "id": "242f",
+      "name": "Full Stack Developer",
+      "email": "krushnamodhave.sits.comp@gmail.com",
+      "password": "dsf"
+    },
+    {
+      "id": "3342",
+      "name": "Krushna Modhve",
+      "email": "krushnamk1009@gmail.com",
+      "password": "123"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "2",
+      "name": "Spicy Bites",
+      "cuisine": "Mexican",
+      "location": "456 Oak Avenue, Townsville"
+    },
+    {
+      "name": "Sushi Express",
+      "cuisine": "Japanese",
+      "location": "Japan Masktari",
+      "id": "3"
+    },
+    {
+      "id": "e588",
+      "name": "KFC",
+      "cuisine": "Chicken",
+      "location": "Pune"
+    },
+    {
+      "id": "ee94",
+      "name": "MACD",
+      "cuisine": "Burger",
+      "location": "Noida"
+    }
+  ]
+}
