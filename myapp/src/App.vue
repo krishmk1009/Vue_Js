@@ -9,6 +9,7 @@
     v-if="pages.length >0 "
     :page="pages[activePage]"></PageBody>
     <FormPage></FormPage>
+    <Counter></Counter>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import PageBody from "./components/PageBody.vue";
 import axios from "axios"; // Import Axios for HTTP requests
 // import "./assets/page.json"
 import FormPage from "./components/FormPage.vue"
+import Counter from "./components/Counter.vue"
 
 export default {
   data() {
@@ -30,6 +32,7 @@ export default {
     Navbar,
     PageBody,
     FormPage,
+    Counter
   },
   created() {
     this.fetchPageData(); // Call fetchPageData when the component is created
