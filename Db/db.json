@@ -1,60 +1,73 @@
 {
   "users": [
     {
-      "name": "Krushna",
-      "email": "krushna@gmail.com",
-      "password": "krus",
-      "id": "76c2"
+      "id": 1,
+      "name": "John Doe",
+      "email": "j@j.com",
+      "password": "122",
+      "posts": [1, 2],
+      "followers": [2, 3],
+      "following": [2]
     },
     {
-      "id": "7a94",
-      "name": "mk",
-      "email": "mk@gmail.com",
-      "password": "mk"
-    },
-    {
-      "id": "9741",
-      "name": "hello",
-      "email": "how",
-      "password": "are"
-    },
-    {
-      "id": "242f",
-      "name": "Full Stack Developer",
-      "email": "krushnamodhave.sits.comp@gmail.com",
-      "password": "dsf"
-    },
-    {
-      "id": "3342",
-      "name": "Krushna Modhve",
-      "email": "krushnamk1009@gmail.com",
-      "password": "123"
+      "id": 2,
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "password": "password456",
+      "posts": [3],
+      "followers": [1],
+      "following": [1]
     }
   ],
-  "restaurants": [
+  "posts": [
     {
-      "id": "2",
-      "name": "Spicy Bites",
-      "cuisine": "Mexican",
-      "location": "456 Oak Avenue, Townsville"
+      "id": 1,
+      "userId": 1,
+      "content": "This is the first post by John Doe"
     },
     {
-      "name": "Sushi Express",
-      "cuisine": "Japanese",
-      "location": "Japan Masktari",
-      "id": "3"
+      "id": 2,
+      "userId": 1,
+      "content": "Second post from John Doe"
     },
     {
-      "id": "e588",
-      "name": "KFC",
-      "cuisine": "Chicken",
-      "location": "Pune"
+      "id": 3,
+      "userId": 2,
+      "content": "Hello, I'm Jane Doe"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "userId": 2,
+      "content": "Nice post, John!"
     },
     {
-      "id": "ee94",
-      "name": "MACD",
-      "cuisine": "Burger",
-      "location": "Noida"
+      "id": 2,
+      "postId": 3,
+      "userId": 1,
+      "content": "Welcome, Jane!"
+    }
+  ],
+  "likes": [
+    {
+      "userId": 1,
+      "postId": 2
+    },
+    {
+      "userId": 2,
+      "postId": 3
+    }
+  ],
+  "followers": [
+    {
+      "followerId": 1,
+      "userId": 2
+    },
+    {
+      "followerId": 3,
+      "userId": 1
     }
   ]
 }
