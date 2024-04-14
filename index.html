@@ -18,6 +18,9 @@
 
 
       <h1>{{heading}}</h1>
+      <p>
+        {{description}}
+      </p>
     </div>
 
     <script>
@@ -35,6 +38,7 @@
         data() {
           return {
             heading: "hello i am Vue",
+            description:"hello I am using vuejs"
           };
         },
       }).mount("#content");
