@@ -43,13 +43,13 @@ export default {
     storeThemeSetting() {
       localStorage.setItem("theme", this.theme);
     },
-    getThemeSetting() {
-      let theme = localStorage.getItem("theme");
+    // getThemeSetting() {
+    //   let theme = localStorage.getItem("theme");
 
-      if (theme) {
-        this.theme = theme;
-      }
-    },
+    //   if (theme) {
+    //     this.theme = theme;
+    //   }
+    // },
   },
 };
 </script>
